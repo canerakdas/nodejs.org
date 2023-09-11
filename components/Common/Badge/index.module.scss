@@ -1,63 +1,63 @@
-.wrapper {
+.badge {
   @apply border rounded-full flex items-center w-fit py-1 pl-1 pr-2.5 dark:bg-neutral-900;
+
+  &Icon {
+    @apply w-4 h-4;
+  }
+
+  &Text {
+    @apply text-sm font-medium rounded-full border px-2.5 py-0.5 mr-2 text-white;
+  }
+
+  &Message {
+    @apply text-sm font-medium mr-1;
+  }
 
   &Green {
     @apply border-green-200 dark:border-green-700 bg-green-100;
+
+    .badgeIcon {
+      @apply text-green-500 dark:text-green-300;
+    }
+
+    .badgeText {
+      @apply border-green-200 dark:border-green-600 bg-green-600;
+    }
+
+    .badgeMessage {
+      @apply text-green-700 dark:text-green-300;
+    }
   }
 
   &Warning {
     @apply border-warning-200 dark:border-warning-700 bg-warning-100;
+
+    .badgeIcon {
+      @apply text-warning-500 dark:text-warning-300;
+    }
+
+    .badgeText {
+      @apply border-warning-200 dark:border-warning-600 bg-warning-600;
+    }
+
+    .badgeMessage {
+      @apply text-warning-700 dark:text-warning-300;
+    }
   }
 
   &Error {
     @apply border-danger-200 dark:border-danger-700 bg-danger-100;
-  }
-}
 
-.badge {
-  @apply text-sm font-medium rounded-full border px-2.5 py-0.5 mr-2 text-white;
+    .badgeIcon {
+      @apply text-danger-500 dark:text-danger-300;
+    }
 
-  &Green {
-    @apply border-green-200 dark:border-green-600 bg-green-600;
-  }
+    .badgeText {
+      @apply border-danger-200 dark:border-danger-600 bg-danger-600;
+    }
 
-  &Warning {
-    @apply border-warning-200 dark:border-warning-600 bg-warning-600;
-  }
-
-  &Error {
-    @apply border-danger-200 dark:border-danger-600 bg-danger-600;
-  }
-}
-
-.content {
-  @apply text-sm font-medium mr-1;
-
-  &Green {
-    @apply text-green-700 dark:text-green-300;
-  }
-
-  &Warning {
-    @apply text-warning-700 dark:text-warning-300;
-  }
-
-  &Error {
-    @apply text-danger-700 dark:text-danger-300;
-  }
-}
-
-.icon {
-  @apply w-4 h-4;
-
-  &Green {
-    @apply text-green-500 dark:text-green-300;
-  }
-
-  &Warning {
-    @apply text-warning-500 dark:text-warning-300;
-  }
-
-  &Error {
-    @apply text-danger-500 dark:text-danger-300;
+    .badgeMessage {
+      @apply text-danger-700 dark:text-danger-300;
+    }
   }
 }
