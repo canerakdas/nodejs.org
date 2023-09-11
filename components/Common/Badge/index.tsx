@@ -26,9 +26,9 @@ const Badge: FC<PropsWithChildren<BadgeProps>> = ({
   return (
     <Link {...args}>
       <div className={badgeClasses}>
-        {badgeText && <span className={styles.text}>{badgeText}</span>}
-        <span className={styles.message}>{children}</span>
-        <ArrowRightIcon className={styles.icon} />
+        {badgeText && <span className={styles.badgeText}>{badgeText}</span>}
+        <span className={styles.badgeMessage}>{children}</span>
+        <ArrowRightIcon className={styles.badgeIcon} />
       </div>
     </Link>
   );
