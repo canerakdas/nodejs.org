@@ -4,13 +4,18 @@ import type { FC, PropsWithChildren } from 'react';
 import { Time } from '@/components/Common/Time';
 import LocalizedLink from '@/components/LocalizedLink';
 import { useBlogData } from '@/hooks/useBlogData';
-import { useLayoutContext } from '@/hooks/useLayoutContext';
 import type { BlogPost } from '@/types';
 
 import BaseLayout from './BaseLayout';
 
-const CategoryIndexLayout: FC<PropsWithChildren> = ({ children }) => {
-  const { frontMatter } = useLayoutContext();
+type CategoryIndexLayoutProps = {
+  title: string;
+};
+
+const CategoryIndexLayout: FC<PropsWithChildren<CategoryIndexLayoutProps>> = ({
+  title,
+  children,
+}) => {
   const { getPostsByCategory, currentCategory } = useBlogData();
 
   const posts = useMemo(
@@ -21,7 +26,7 @@ const CategoryIndexLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <BaseLayout>
       <div className="container" dir="auto">
-        <h2>{frontMatter.title}</h2>
+        <h2>{title}</h2>
 
         <ul className="blog-index">
           {posts.map((post: BlogPost) => (

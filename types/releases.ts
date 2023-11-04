@@ -34,6 +34,8 @@ export interface NodeRelease extends NodeReleaseSource {
   versionWithPrefix: string;
   isLts: boolean;
   status: NodeReleaseStatus;
+  downloads: Record<string, string>;
+  additional: Record<string, string>;
 }
 
 export type NodeReleaseSupport = Pick<

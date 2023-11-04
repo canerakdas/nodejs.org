@@ -2,7 +2,7 @@ import { memo } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 
 import HtmlHead from './components/HtmlHead';
-import { LayoutProvider } from './providers/layoutProvider';
+import { WithMDXLayout } from './components/withMDXLayout';
 import { MDXProvider } from './providers/mdxProvider';
 import type { DynamicStaticProps } from './types';
 
@@ -15,11 +15,11 @@ type ThemeProps = PropsWithChildren<DynamicStaticProps>;
 const Theme: FC<ThemeProps> = ({ content, frontmatter = {}, children }) => (
   <>
     <HtmlHead frontMatter={frontmatter} />
-    <LayoutProvider frontMatter={frontmatter}>
+    <WithMDXLayout frontMatter={frontmatter}>
       {content && <MDXProvider content={content} />}
 
       {children}
-    </LayoutProvider>
+    </WithMDXLayout>
   </>
 );
 

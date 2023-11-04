@@ -5,7 +5,7 @@ import DownloadReleasesTable from '@/components/Downloads/DownloadReleasesTable'
 import Banner from '@/components/Home/Banner';
 import HomeDownloadButton from '@/components/Home/HomeDownloadButton';
 import LocalizedLink from '@/components/LocalizedLink';
-import { WithNodeRelease } from '@/providers/withNodeRelease';
+import { WithNodeRelease } from '@/components/withNodeRelease';
 
 /**
  * A full list of React Components that we want to passthrough to MDX

@@ -2,17 +2,21 @@ import type { FC, PropsWithChildren } from 'react';
 
 import PrimaryDownloadMatrix from '@/components/Downloads/PrimaryDownloadMatrix';
 import SecondaryDownloadMatrix from '@/components/Downloads/SecondaryDownloadMatrix';
-import { useLayoutContext } from '@/hooks/useLayoutContext';
-import { WithNodeRelease } from '@/providers/withNodeRelease';
-import type { LegacyDownloadsFrontMatter } from '@/types';
+import { WithNodeRelease } from '@/components/withNodeRelease';
 
 import BaseLayout from './BaseLayout';
 
-const DownloadLayout: FC<PropsWithChildren> = ({ children }) => {
-  const { frontMatter } = useLayoutContext();
+type DownloadLayoutProps = {
+  downloads: Record<string, string>;
+  additional: Record<string, string>;
+};
 
-  const { downloads } = frontMatter as LegacyDownloadsFrontMatter;
-
+const DownloadLayout: FC<PropsWithChildren<DownloadLayoutProps>> = ({
+  downloads,
+  additional,
+  children,
+}) => {
+  console.log(downloads, additional, children);
   return (
     <BaseLayout>
       <div className="container">
@@ -26,8 +30,8 @@ const DownloadLayout: FC<PropsWithChildren> = ({ children }) => {
           <WithNodeRelease status={['Active LTS', 'Maintenance LTS']}>
             {({ release }) => (
               <>
-                <PrimaryDownloadMatrix {...release} />
-                <SecondaryDownloadMatrix {...release} />
+                <PrimaryDownloadMatrix {...release} downloads={downloads} />
+                <SecondaryDownloadMatrix {...release} additional={additional} />
               </>
             )}
           </WithNodeRelease>
