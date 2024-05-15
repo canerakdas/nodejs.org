@@ -1,0 +1,73 @@
+.overlay {
+  @apply fixed
+    inset-0
+    z-50
+    flex
+    justify-center
+    bg-white/40
+    backdrop-blur-[2px]
+    dark:bg-neutral-950/40;
+
+  .content {
+    @apply relative
+      mx-4
+      my-4
+      inline-flex
+      w-full
+      flex-col
+      overflow-y-auto
+      rounded
+      border
+      border-neutral-200
+      bg-white
+      focus:outline-none
+      dark:border-neutral-900
+      dark:bg-neutral-950;
+  }
+
+  .large {
+    @apply p-8
+      sm:my-20
+      lg:max-w-[900px]
+      xl:p-12
+      xs:p-6;
+  }
+
+  .medium {
+    @apply self-center
+      sm:my-4
+      lg:max-w-[720px]
+      xs:h-[calc(100vh-2rem)]
+      xs:w-screen;
+  }
+
+  .close {
+    @apply absolute
+      right-3
+      top-3
+      block
+      size-6
+      cursor-pointer
+      rounded
+      focus:outline-none
+      focus:ring-2
+      focus:ring-neutral-200
+      dark:focus:ring-neutral-900;
+  }
+
+  .title {
+    @apply mb-2
+      text-3xl
+      font-semibold
+      text-neutral-900
+      dark:text-white;
+  }
+
+  .description {
+    @apply mb-4
+      text-lg
+      font-regular
+      text-neutral-800
+      dark:text-neutral-200;
+  }
+}

@@ -1,4 +1,4 @@
-.searchButton {
+.button {
   @apply flex
     w-52
     gap-2
@@ -15,21 +15,13 @@
     dark:hover:text-neutral-500;
 }
 
-.magnifyingGlassIcon {
+.icon {
   @apply size-5;
 }
 
-.shortcutIndicator {
+.shortcut {
   @apply invisible
-    flex
     flex-1
-    items-center
     justify-end
-    self-center
-    px-1
-    font-ibm-plex-mono
-    text-xs
-    motion-safe:transition-opacity
-    motion-safe:duration-100
     md:visible;
 }

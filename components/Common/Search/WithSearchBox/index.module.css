@@ -1,0 +1,110 @@
+.form {
+  @apply relative;
+}
+
+.input {
+  @apply focusable
+    w-full
+    rounded-md
+    bg-neutral-100
+    p-2
+    pl-9
+    text-sm
+    font-medium
+    text-neutral-900
+    outline-none
+    dark:bg-neutral-900
+    dark:text-white;
+}
+
+.label {
+  @apply absolute
+    left-2
+    top-2
+    xs:hidden;
+
+  svg {
+    @apply size-5
+      text-neutral-800
+      dark:text-neutral-300;
+  }
+}
+
+.search {
+  @apply flex
+    flex-col
+    gap-2
+    border-b
+    border-neutral-200
+    p-6
+    pb-2
+    dark:border-neutral-900;
+}
+
+.tabs [role='tab'] {
+  @apply focusable
+    m-1
+    !py-1
+    !font-regular
+    capitalize
+    focus-visible:rounded-sm;
+
+  span {
+    @apply text-xs
+      font-regular;
+  }
+}
+
+.container {
+  @apply flex
+    flex-col;
+}
+
+.results {
+  @apply flex
+    h-[16.5rem]
+    flex-col
+    gap-1
+    overflow-auto
+    bg-gradient-subtle
+    px-2
+    py-2
+    dark:bg-gradient-subtle-dark
+    xs:basis-[calc(100vh-13rem)];
+}
+
+.trigger {
+  @apply focusable
+    absolute
+    left-0
+    top-0
+    hidden
+    h-full
+    rounded-sm
+    pl-2
+    focus-visible:bg-neutral-200
+    dark:focus-visible:bg-neutral-900
+    xs:block;
+
+  svg {
+    @apply size-5
+      text-neutral-800
+      dark:text-neutral-300;
+  }
+}
+
+.navigation {
+  @apply hidden
+    grow
+    gap-2
+    sm:flex;
+}
+
+.focusable {
+  @apply outline-none
+    focus-visible:ring-2
+    focus-visible:ring-neutral-200
+    focus-visible:ring-offset-1
+    focus-visible:dark:ring-neutral-900/80
+    focus-visible:dark:ring-offset-neutral-950/80;
+}

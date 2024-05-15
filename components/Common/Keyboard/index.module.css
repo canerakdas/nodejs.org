@@ -1,0 +1,33 @@
+.container {
+  @apply flex
+    items-center
+    gap-2
+    px-1
+    font-ibm-plex-mono
+    motion-safe:transition-opacity
+    motion-safe:duration-100;
+
+  .neutral {
+    @apply flex
+      gap-1
+      rounded-md
+      border
+      border-neutral-300
+      px-1
+      text-[0.625rem]
+      text-neutral-800
+      dark:border-neutral-800
+      dark:text-neutral-500;
+  }
+
+  svg {
+    @apply m-px
+      size-3;
+  }
+}
+
+.label {
+  @apply font-open-sans
+    text-neutral-800
+    dark:text-neutral-300;
+}

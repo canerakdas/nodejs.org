@@ -1,11 +1,11 @@
 'use client';
 
-import { ArrowUpRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import * as Dialog from '@radix-ui/react-dialog';
+import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
 import type { FC, PropsWithChildren, ComponentProps } from 'react';
 
 import AvatarGroup from '@/components/Common/AvatarGroup';
+import Modal from '@/components/Containers/Modal';
 import Link from '@/components/Link';
 
 import styles from './index.module.css';
@@ -29,36 +29,23 @@ const ChangelogModal: FC<ChangelogModalProps> = ({
   const t = useTranslations();
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Portal>
-        <Dialog.Overlay className={styles.overlay}>
-          <Dialog.Content className={styles.content}>
-            <Dialog.Trigger className={styles.close}>
-              <XMarkIcon />
-            </Dialog.Trigger>
+    <Modal
+      title={heading}
+      description={subheading}
+      open={open}
+      onOpenChange={onOpenChange}
+    >
+      <div className={styles.authors}>
+        <AvatarGroup avatars={avatars} isExpandable={false} />
 
-            <Dialog.Title className={styles.title}>{heading}</Dialog.Title>
+        <Link href="/about/get-involved">
+          {t('components.downloads.changelogModal.startContributing')}
+          <ArrowUpRightIcon />
+        </Link>
+      </div>
 
-            <Dialog.Description className={styles.description}>
-              {subheading}
-            </Dialog.Description>
-
-            <div className={styles.authors}>
-              <AvatarGroup avatars={avatars} isExpandable={false} />
-
-              <Link href="/about/get-involved">
-                {t('components.downloads.changelogModal.startContributing')}
-                <ArrowUpRightIcon />
-              </Link>
-            </div>
-
-            <div className={styles.wrapper}>{children}</div>
-
-            <Dialog.Close />
-          </Dialog.Content>
-        </Dialog.Overlay>
-      </Dialog.Portal>
-    </Dialog.Root>
+      <div className={styles.wrapper}>{children}</div>
+    </Modal>
   );
 };
 

@@ -216,6 +216,15 @@
       },
       "searchPage": {
         "title": "You're searching: {query}"
+      },
+      "shortcuts": {
+        "close": "to close",
+        "changeCategory": "to change category",
+        "selectCategory": "to select category",
+        "navigate": "to navigate",
+        "search": "to search",
+        "select": "to select",
+        "visit": "to visit"
       }
     },
     "blog": {

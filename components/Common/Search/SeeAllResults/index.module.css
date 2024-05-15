@@ -1,0 +1,20 @@
+.allResults {
+  @apply mt-2
+    w-full
+    text-center
+    text-sm
+    text-green-600
+    hover:underline
+    dark:text-green-400;
+
+  a {
+    @apply rounded-sm
+      px-2
+      outline-none
+      focus-visible:ring-2
+      focus-visible:ring-neutral-200
+      focus-visible:ring-offset-1
+      focus-visible:dark:ring-neutral-900/80
+      focus-visible:dark:ring-offset-neutral-950/80;
+  }
+}

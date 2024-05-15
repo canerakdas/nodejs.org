@@ -5,14 +5,14 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, type FC } from 'react';
 
-import { WithPoweredBy } from '@/components/Common/Search/States/WithPoweredBy';
-import { WithSearchBox } from '@/components/Common/Search/States/WithSearchBox';
-import { pathToBreadcrumbs } from '@/components/Common/Search/utils';
+import SearchFooter from '@/components/Common/Search/SearchFooter';
+import WithSearchBox from '@/components/Common/Search/WithSearchBox';
 import Link from '@/components/Link';
 import { useBottomScrollListener } from '@/hooks/react-client';
 import { BASE_URL, DEFAULT_ORAMA_QUERY_PARAMS } from '@/next.constants.mjs';
 import { search as oramaSearch, highlighter } from '@/next.orama.mjs';
 import type { SearchDoc } from '@/types';
+import { pathToBreadcrumbs } from '@/util/searchUtils';
 
 import styles from './index.module.css';
 
@@ -28,7 +28,7 @@ const SearchPage: FC = () => {
 
   const searchTerm = searchParams?.get('q');
   const searchSection = searchParams?.get('section');
-  const [shownSearchBox, setShownSearchbox] = useState<boolean>(!searchTerm);
+  const [shownSearchBox, setShownSearchbox] = useState<boolean>(false);
 
   useBottomScrollListener(() => setOffset(offset => offset + 10));
 
@@ -40,6 +40,15 @@ const SearchPage: FC = () => {
     search(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchSection, searchTerm]);
+
+  useEffect(() => {
+    setShownSearchbox(!searchTerm);
+    // Since dialog gives hydration failure in SSR when initially rendered, to
+    // avoid this, we are setting the search box to open after the initial
+    // render.
+    // @see https://github.com/radix-ui/primitives/issues/1386
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const uniqueHits = (newHits: Array<Hit>) =>
     newHits.filter(
@@ -81,14 +90,14 @@ const SearchPage: FC = () => {
   return (
     <div className={styles.searchPageContainer}>
       {shownSearchBox ? (
-        <WithSearchBox onClose={() => setShownSearchbox(false)} />
+        <WithSearchBox open={shownSearchBox} setOpen={setShownSearchbox} />
       ) : null}
       <div className={styles.searchTermContainer}>
         <h1>
           {t('components.search.searchPage.title', { query: searchTerm })}
         </h1>
 
-        <WithPoweredBy />
+        <SearchFooter ltr={true} />
       </div>
 
       <div className={styles.searchResultsColumns}>

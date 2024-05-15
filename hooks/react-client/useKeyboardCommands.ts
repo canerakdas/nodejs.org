@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 
-type KeyboardCommand = 'cmd-k' | 'escape' | 'down' | 'up' | 'enter';
+type KeyboardCommand = 'cmd-k' | 'escape' | 'down' | 'up' | 'enter' | 'tab';
 
-type KeyboardCommandCallback = (key: KeyboardCommand) => void;
+type KeyboardCommandCallback = (
+  key: KeyboardCommand,
+  event?: KeyboardEvent
+) => void;
 
 const useKeyboardCommands = (fn: KeyboardCommandCallback) => {
   useEffect(() => {
@@ -21,10 +24,13 @@ const useKeyboardCommands = (fn: KeyboardCommandCallback) => {
           fn('enter');
           break;
         case 'ArrowDown':
-          fn('down');
+          fn('down', event);
           break;
         case 'ArrowUp':
-          fn('up');
+          fn('up', event);
+          break;
+        case 'Tab':
+          fn('tab');
           break;
       }
     };

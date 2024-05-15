@@ -5,57 +5,41 @@ import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { useState, type FC } from 'react';
 
-import { WithSearchBox } from '@/components/Common/Search/States/WithSearchBox';
-import { useDetectOS } from '@/hooks';
-import { useKeyboardCommands } from '@/hooks/react-client';
+import Keyboard from '@/components/Common/Keyboard';
+import WithSearchBox from '@/components/Common/Search/WithSearchBox';
+import { useCommandKey, useKeyboardCommands } from '@/hooks/react-client';
 
 import styles from './index.module.css';
 
-export const SearchButton: FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const SearchButton: FC = () => {
   const t = useTranslations();
-  const openSearchBox = () => setIsOpen(true);
-  const closeSearchBox = () => setIsOpen(false);
+  const [open, setOpen] = useState(false);
+  const { osCommandKey, isOSLoading } = useCommandKey();
 
-  useKeyboardCommands(cmd => {
-    switch (cmd) {
-      case 'cmd-k':
-        openSearchBox();
-        break;
-      case 'escape':
-        closeSearchBox();
-        break;
-      default:
-    }
-  });
-
-  const { os } = useDetectOS();
-
-  const osCommandKey = os === 'MAC' ? '⌘' : 'Ctrl';
-  const isOSLoading = os === 'LOADING';
+  useKeyboardCommands(cmd => cmd === 'cmd-k' && setOpen(true));
 
   return (
     <>
       <button
         type="button"
-        onClick={openSearchBox}
-        className={styles.searchButton}
+        onClick={() => setOpen(true)}
+        className={styles.button}
         aria-label={t('components.search.searchBox.placeholder')}
       >
-        <MagnifyingGlassIcon className={styles.magnifyingGlassIcon} />
+        <MagnifyingGlassIcon className={styles.icon} />
 
         {t('components.search.searchBox.placeholder')}
-        <kbd
-          title={`${osCommandKey} K`}
-          className={classNames(styles.shortcutIndicator, {
+        <Keyboard
+          value={`${osCommandKey} K`}
+          className={classNames(styles.shortcut, {
             'opacity-0': isOSLoading,
           })}
-        >
-          <abbr>{osCommandKey} K</abbr>
-        </kbd>
+        />
       </button>
 
-      {isOpen ? <WithSearchBox onClose={closeSearchBox} /> : null}
+      <WithSearchBox open={open} setOpen={setOpen} />
     </>
   );
 };
+
+export default SearchButton;

@@ -28,13 +28,20 @@ describe('useKeyboardCommands', () => {
     act(() => {
       fireEvent.keyDown(document, { key: 'ArrowDown' });
     });
-    expect(fn).toHaveBeenCalledWith('down');
+
+    expect(fn).toHaveBeenCalledWith(
+      'down',
+      expect.objectContaining({ isTrusted: false })
+    );
     fn.mockClear();
 
     act(() => {
       fireEvent.keyDown(document, { key: 'ArrowUp' });
     });
-    expect(fn).toHaveBeenCalledWith('up');
+    expect(fn).toHaveBeenCalledWith(
+      'up',
+      expect.objectContaining({ isTrusted: false })
+    );
     fn.mockClear();
   });
 

@@ -1,0 +1,62 @@
+.result {
+  @apply m-0
+    list-none
+    p-0;
+
+  [role='option'] {
+    @apply flex
+      flex-col
+      gap-1
+      rounded-sm
+      px-5
+      py-3
+      text-sm
+      font-medium
+      outline-none;
+
+    &.keyboard[aria-selected='true'] {
+      @apply cursor-none
+        bg-neutral-200
+        motion-safe:transition-colors
+        motion-safe:duration-300
+        dark:bg-neutral-900;
+    }
+
+    &.mouse:hover {
+      @apply bg-neutral-200
+        transition-colors
+        duration-200
+        dark:bg-neutral-900;
+    }
+  }
+}
+
+.title {
+  @apply flex
+    items-center
+    gap-1
+    text-sm
+    font-medium
+    text-neutral-900
+    dark:text-white;
+
+  > svg {
+    @apply size-4;
+  }
+}
+
+.breadcrumb {
+  @apply flex
+    flex-wrap
+    items-center
+    gap-0.5
+    text-xs
+    font-medium
+    capitalize
+    text-neutral-900/50
+    dark:text-white/50;
+}
+
+.icon {
+  @apply size-3;
+}

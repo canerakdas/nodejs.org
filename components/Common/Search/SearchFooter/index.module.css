@@ -1,0 +1,29 @@
+.footer {
+  @apply flex
+    w-full
+    text-xs;
+
+  &.rightAligned {
+    @apply justify-end
+      border-t
+      border-neutral-200
+      px-6
+      py-4
+      dark:border-neutral-900;
+  }
+
+  a {
+    @apply flex
+      gap-1
+      rounded-sm
+      p-1
+      text-neutral-900
+      outline-none
+      focus-visible:ring-2
+      focus-visible:ring-neutral-200
+      focus-visible:ring-offset-1
+      dark:text-neutral-400
+      focus-visible:dark:ring-neutral-900/80
+      focus-visible:dark:ring-offset-neutral-950/80;
+  }
+}
