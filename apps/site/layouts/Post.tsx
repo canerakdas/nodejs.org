@@ -7,16 +7,12 @@ import WithFooter from '@/components/withFooter';
 import WithMetaBar from '@/components/withMetaBar';
 import WithNavBar from '@/components/withNavBar';
 import { useClientContext } from '@/hooks/react-server';
-import { mapAuthorToCardAuthors } from '@/util/authorUtils';
 import { mapBlogCategoryToPreviewType } from '@/util/blogUtils';
 
 import styles from './layouts.module.css';
 
 const PostLayout: FC<PropsWithChildren> = ({ children }) => {
-  const { frontmatter } = useClientContext();
-
-  const authors = mapAuthorToCardAuthors(frontmatter.author);
-
+  const { frontmatter, authors } = useClientContext();
   const type = mapBlogCategoryToPreviewType(frontmatter.category);
 
   return (
@@ -27,11 +23,10 @@ const PostLayout: FC<PropsWithChildren> = ({ children }) => {
         <div className={styles.postLayout}>
           <main>
             <h1>{frontmatter.title}</h1>
-
             <section>
-              <WithAvatarGroup names={authors} />
+              <WithAvatarGroup authors={authors} />
 
-              <p>{authors.join(', ')}</p>
+              <p>{authors.map(({ name }) => name).join(', ')}</p>
             </section>
 
             <Preview title={frontmatter.title!} type={type} />

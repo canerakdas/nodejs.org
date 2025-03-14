@@ -3,29 +3,16 @@
 import type { ComponentProps, FC } from 'react';
 
 import AvatarGroup from '@/components/Common/AvatarGroup';
-import type { AuthorProps } from '@/types';
-import { getAuthors } from '@/util/authorUtils';
+import type { Author } from '@/types';
 
-type WithAvatarGroupProps = Omit<
-  ComponentProps<typeof AvatarGroup>,
-  'avatars'
-> &
-  AuthorProps;
+type WithAvatarGroupProps = {
+  authors: Array<Author>;
+  size?: ComponentProps<typeof AvatarGroup>['size'];
+  limit?: ComponentProps<typeof AvatarGroup>['limit'];
+};
 
-const WithAvatarGroup: FC<WithAvatarGroupProps> = ({
-  usernames,
-  names,
-  clickable = true,
-  ...props
-}) => (
-  <AvatarGroup
-    avatars={getAuthors({
-      usernames: usernames,
-      names: names,
-      clickable: clickable,
-    })}
-    {...props}
-  />
+const WithAvatarGroup: FC<WithAvatarGroupProps> = ({ authors, ...props }) => (
+  <AvatarGroup authors={authors} {...props} />
 );
 
 export default WithAvatarGroup;

@@ -4,14 +4,13 @@ import type { ComponentPropsWithoutRef, ElementRef } from 'react';
 import { forwardRef } from 'react';
 
 import Link from '@/components/Link';
+import { getAcronymFromString } from '@/util/stringUtils';
 
 import styles from './index.module.css';
 
 export type AvatarProps = {
   image?: string;
-  name?: string;
-  nickname: string;
-  fallback?: string;
+  name: string;
   size?: 'small' | 'medium';
   url?: string;
 };
@@ -19,7 +18,7 @@ export type AvatarProps = {
 const Avatar = forwardRef<
   ElementRef<typeof RadixAvatar.Root>,
   ComponentPropsWithoutRef<typeof RadixAvatar.Root> & AvatarProps
->(({ image, nickname, name, fallback, url, size = 'small', ...props }, ref) => {
+>(({ image, name, url, size = 'small', ...props }, ref) => {
   const Wrapper = url ? Link : 'div';
 
   return (
@@ -36,14 +35,14 @@ const Avatar = forwardRef<
         <RadixAvatar.Image
           loading="lazy"
           src={image}
-          alt={name || nickname}
+          alt={name}
           className={styles.item}
         />
         <RadixAvatar.Fallback
           delayMs={500}
           className={classNames(styles.item, styles[size])}
         >
-          {fallback}
+          {getAcronymFromString(name)}
         </RadixAvatar.Fallback>
       </Wrapper>
     </RadixAvatar.Root>

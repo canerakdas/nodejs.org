@@ -1,6 +1,7 @@
 import type { Heading } from '@vcarl/remark-headings';
 import type { ReadTimeResults } from 'reading-time';
 
+import type { Author } from './author';
 import type { LegacyFrontMatter } from './frontmatter';
 
 export interface ClientSharedServerContext {
@@ -9,4 +10,5 @@ export interface ClientSharedServerContext {
   pathname: string;
   filename: string;
   readingTime: ReadTimeResults;
+  authors: Array<Author>;
 }

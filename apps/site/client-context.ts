@@ -22,4 +22,5 @@ export const setClientContext = (data: Partial<ClientSharedServerContext>) => {
   getClientContext().headings = _data.headings;
   getClientContext().readingTime = _data.readingTime;
   getClientContext().filename = _data.filename;
+  getClientContext().authors = _data.authors;
 };

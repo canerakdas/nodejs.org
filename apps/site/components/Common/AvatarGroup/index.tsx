@@ -9,11 +9,12 @@ import Avatar from '@/components/Common/AvatarGroup/Avatar';
 import avatarstyles from '@/components/Common/AvatarGroup/Avatar/index.module.css';
 import AvatarOverlay from '@/components/Common/AvatarGroup/Overlay';
 import Tooltip from '@/components/Common/Tooltip';
+import type { Author } from '@/types';
 
 import styles from './index.module.css';
 
 type AvatarGroupProps = {
-  avatars: Array<AvatarProps>;
+  authors: Array<Author>;
   limit?: number;
   isExpandable?: boolean;
   size?: AvatarProps['size'];
@@ -21,7 +22,7 @@ type AvatarGroupProps = {
 };
 
 const AvatarGroup: FC<AvatarGroupProps> = ({
-  avatars,
+  authors,
   limit = 10,
   isExpandable = true,
   size = 'small',
@@ -30,14 +31,14 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
   const [showMore, setShowMore] = useState(false);
 
   const renderAvatars = useMemo(
-    () => avatars.slice(0, showMore ? avatars.length : limit),
-    [showMore, avatars, limit]
+    () => authors.slice(0, showMore ? authors.length : limit),
+    [showMore, authors, limit]
   );
 
   return (
     <div className={classNames(styles.avatarGroup, styles[size])}>
       {renderAvatars.map(({ ...avatar }) => (
-        <Fragment key={avatar.nickname}>
+        <Fragment key={avatar.name}>
           <Tooltip
             asChild
             container={container}
@@ -54,7 +55,7 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
           </Tooltip>
         </Fragment>
       ))}
-      {avatars.length > limit && (
+      {authors.length > limit && (
         <span
           onClick={isExpandable ? () => setShowMore(prev => !prev) : undefined}
           className={classNames(
@@ -64,7 +65,7 @@ const AvatarGroup: FC<AvatarGroupProps> = ({
           )}
         >
           <span className={avatarstyles.item}>
-            {`${showMore ? '-' : '+'}${avatars.length - limit}`}
+            {`${showMore ? '-' : '+'}${authors.length - limit}`}
           </span>
         </span>
       )}

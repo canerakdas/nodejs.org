@@ -8,5 +8,6 @@ export interface AuthorProps {
 export interface Author {
   id: string;
   name: string;
-  website?: string;
+  url: string;
+  image: string;
 }

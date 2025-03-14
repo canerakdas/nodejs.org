@@ -14,3 +14,6 @@ export const getGitHubBlobUrl = (filename: string) =>
 
 export const getGitHubApiDocsUrl = (ref: string) =>
   `https://api.github.com/repos/nodejs/node/contents/doc/api?ref=${ref}`;
+
+export const getGitHubUser = (username: string) =>
+  `https://api.github.com/users/${username}`;

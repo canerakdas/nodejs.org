@@ -1,8 +1,11 @@
+import type { Author } from './author';
+
 export type BlogPreviewType = 'announcements' | 'release' | 'vulnerability';
 
 export interface BlogPost {
   title: string;
   author: string;
+  authors?: Array<Author>;
   username: string;
   date: Date;
   categories: Array<string>;

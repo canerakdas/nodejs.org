@@ -7,6 +7,8 @@ import WithBlogCategories from '@/components/withBlogCategories';
 import WithFooter from '@/components/withFooter';
 import WithNavBar from '@/components/withNavBar';
 import getBlogData from '@/next-data/blogData';
+import getUserData from '@/next-data/userData';
+import { parseAuthorNames } from '@/util/authorUtils';
 
 import styles from './layouts.module.css';
 
@@ -20,7 +22,14 @@ const getBlogCategory = async (pathname: string) => {
 
   const { posts, pagination } = await getBlogData(category, Number(page));
 
-  return { category, posts, pagination, page: Number(page) };
+  const authors = await getUserData();
+
+  const k = posts.map(post => ({
+    ...post,
+    authors: parseAuthorNames(post.author).map(author => authors[author]),
+  }));
+
+  return { category, posts: k, pagination, page: Number(page) };
 };
 
 const BlogLayout: FC = async () => {

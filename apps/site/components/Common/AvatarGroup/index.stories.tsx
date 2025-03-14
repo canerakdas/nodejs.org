@@ -1,36 +1,52 @@
 import type { Meta as MetaObj, StoryObj } from '@storybook/react';
 
 import AvatarGroup from '@/components/Common/AvatarGroup';
-import { getAuthorWithId } from '@/util/authorUtils';
 
 type Story = StoryObj<typeof AvatarGroup>;
 type Meta = MetaObj<typeof AvatarGroup>;
 
-const names = [
-  'ovflowd',
-  'bmuenzenmeyer',
-  'AugustinMauroy',
-  'HinataKah0',
-  'Harkunwar',
-  'rodion-arr',
-  'mikeesto',
-  'bnb',
-  'benhalverson',
-  'aymen94',
-  'shanpriyan',
-  'Wai-Dung',
-  'manishprivet',
-  'araujogui',
+const authors = [
+  {
+    id: 'flaviocopes',
+    name: 'flaviocopes',
+    image: 'https://avatars.githubusercontent.com/flaviocopes',
+    url: 'https://github.com/flaviocopes',
+  },
+  {
+    id: 'ZYSzys',
+    name: 'ZYSzys',
+    image: 'https://avatars.githubusercontent.com/ZYSzys',
+    url: 'https://github.com/ZYSzys',
+  },
+  {
+    id: 'MylesBorins',
+    name: 'MylesBorins',
+    image: 'https://avatars.githubusercontent.com/MylesBorins',
+    url: 'https://github.com/MylesBorins',
+  },
+  {
+    id: 'fhemberger',
+    name: 'fhemberger',
+    image: 'https://avatars.githubusercontent.com/fhemberger',
+    url: 'https://github.com/fhemberger',
+  },
+  {
+    id: 'ovflowd',
+    name: 'ovflowd',
+    image: 'https://avatars.githubusercontent.com/ovflowd',
+    url: 'https://github.com/ovflowd',
+  },
 ];
 
 const unknownAvatar = {
+  id: 'unknown-avatar',
+  name: 'unknown-avatar',
   image: 'https://avatars.githubusercontent.com/u/',
-  nickname: 'unknown-avatar',
-  fallback: 'UA',
+  url: '',
 };
 
 const defaultProps = {
-  avatars: [unknownAvatar, ...getAuthorWithId(names, true)],
+  authors: [unknownAvatar, ...authors],
 };
 
 export const Default: Story = {

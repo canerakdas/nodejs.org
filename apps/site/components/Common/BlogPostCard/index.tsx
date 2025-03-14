@@ -5,6 +5,7 @@ import FormattedTime from '@/components/Common/FormattedTime';
 import Preview from '@/components/Common/Preview';
 import Link from '@/components/Link';
 import WithAvatarGroup from '@/components/withAvatarGroup';
+import type { Author } from '@/types';
 import { mapBlogCategoryToPreviewType } from '@/util/blogUtils';
 
 import styles from './index.module.css';
@@ -13,7 +14,7 @@ type BlogPostCardProps = {
   title: string;
   category: string;
   description?: string;
-  authors?: Array<string>;
+  authors?: Array<Author>;
   date?: Date;
   slug?: string;
 };
@@ -47,10 +48,10 @@ const BlogPostCard: FC<BlogPostCardProps> = ({
       {description && <p className={styles.description}>{description}</p>}
 
       <footer className={styles.footer}>
-        <WithAvatarGroup names={authors} size="medium" clickable={false} />
+        <WithAvatarGroup authors={authors} size="medium" />
 
         <div className={styles.author}>
-          {authors && <p>{authors.join(', ')}</p>}
+          {authors && <p>{authors.map(author => author.name).join(', ')}</p>}
 
           {date && <FormattedTime date={date} />}
         </div>

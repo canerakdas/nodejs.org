@@ -11,7 +11,7 @@ export const Default: Story = {
     category: 'vulnerability',
     description:
       'Starting on March 15th and going through to March 17th (with much of the issue being mitigated on the 16th), users were receiving intermittent 404 responses when trying to download Node.js from nodejs.org, or even accessing parts of the website.',
-    authors: ['Claudio Wunder'],
+    //authors: ['Claudio Wunder'], @TODO: @canerakdas Update the author object
     slug: '/blog/vulnerability/something',
     date: new Date('17 October 2023'),
   },
@@ -28,7 +28,7 @@ export const MoreThanOneAuthor: Story = {
   ...Default,
   args: {
     ...Default.args,
-    authors: [...(Default.args?.authors ?? []), 'Brian Muenzenmeyer'],
+    //authors: [...(Default.args?.authors ?? []), 'Brian Muenzenmeyer'], @TODO: @canerakdas Update the author object
   },
 };
 

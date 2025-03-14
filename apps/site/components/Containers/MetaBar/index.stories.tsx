@@ -4,27 +4,9 @@ import type { Meta as MetaObj, StoryObj } from '@storybook/react';
 import MetaBar from '@/components/Containers/MetaBar';
 import GitHub from '@/components/Icons/Social/GitHub';
 import Link from '@/components/Link';
-import WithAvatarGroup from '@/components/withAvatarGroup';
 
 type Story = StoryObj<typeof MetaBar>;
 type Meta = MetaObj<typeof MetaBar>;
-
-const names = [
-  'ovflowd',
-  'bmuenzenmeyer',
-  'AugustinMauroy',
-  'HinataKah0',
-  'Harkunwar',
-  'rodion-arr',
-  'mikeesto',
-  'bnb',
-  'benhalverson',
-  'aymen94',
-  'shanpriyan',
-  'Wai-Dung',
-  'manishprivet',
-  'araujogui',
-];
 
 export const Default: Story = {
   args: {
@@ -35,9 +17,12 @@ export const Default: Story = {
       'components.metabar.readingTime': '15 minutes',
       'components.metabar.addedIn': 'v1.0.0',
       'components.metabar.author': 'The Node.js Project',
+      /*
+       @TODO: @canerakdas Update the author object
       'components.metabar.authors': (
         <WithAvatarGroup usernames={names} limit={6} />
       ),
+      */
       'components.metabar.contribute': (
         <>
           <GitHub className="fill-neutral-700 dark:fill-neutral-100" />

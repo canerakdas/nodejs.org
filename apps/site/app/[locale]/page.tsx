@@ -13,12 +13,14 @@ import type { FC } from 'react';
 
 import { setClientContext } from '@/client-context';
 import WithLayout from '@/components/withLayout';
+import getUserData from '@/next-data/userData';
 import { ENABLE_STATIC_EXPORT } from '@/next.constants.mjs';
 import { PAGE_VIEWPORT, DYNAMIC_ROUTES } from '@/next.dynamic.constants.mjs';
 import { dynamicRouter } from '@/next.dynamic.mjs';
 import { allLocaleCodes, availableLocaleCodes } from '@/next.locales.mjs';
 import { defaultLocale } from '@/next.locales.mjs';
 import { MatterProvider } from '@/providers/matterProvider';
+import { parseAuthorNames } from '@/util/authorUtils';
 
 type DynamicStaticPaths = { path: Array<string>; locale: string };
 type DynamicParams = { params: Promise<DynamicStaticPaths> };
@@ -113,6 +115,8 @@ const getPage: FC<DynamicParams> = async props => {
     const { content, frontmatter, headings, readingTime } =
       await dynamicRouter.getMDXContent(source, filename);
 
+    const authors = await getUserData();
+
     // Metadata and shared Context to be available through the lifecycle of the page
     const sharedContext = {
       frontmatter,
@@ -120,6 +124,9 @@ const getPage: FC<DynamicParams> = async props => {
       pathname: `/${pathname}`,
       readingTime,
       filename,
+      authors: parseAuthorNames(frontmatter.authors || frontmatter.author).map(
+        author => authors[author]
+      ),
     };
 
     // Defines a shared Server Context for the Client-Side

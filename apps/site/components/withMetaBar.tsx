@@ -12,14 +12,13 @@ import { DEFAULT_DATE_FORMAT } from '@/next.calendar.constants.mjs';
 import { getGitHubBlobUrl } from '@/util/gitHubUtils';
 
 const WithMetaBar: FC = () => {
-  const { headings, readingTime, frontmatter, filename } = useClientContext();
+  const { headings, readingTime, frontmatter, filename, authors } =
+    useClientContext();
+
   const formatter = useFormatter();
   const lastUpdated = frontmatter.date
     ? formatter.dateTime(new Date(frontmatter.date), DEFAULT_DATE_FORMAT)
     : undefined;
-
-  const usernames =
-    frontmatter.authors?.split(',').map(author => author.trim()) ?? [];
 
   // Since we cannot show the same number of avatars in Mobile / Tablet
   // resolution as we do on desktop and there is overflow, we are adjusting
@@ -34,14 +33,13 @@ const WithMetaBar: FC = () => {
       items={{
         'components.metabar.lastUpdated': lastUpdated,
         'components.metabar.readingTime': readingTime.text,
-        ...(usernames.length && {
-          [`components.metabar.${usernames.length > 1 ? 'authors' : 'author'}`]:
-            (
-              <WithAvatarGroup
-                usernames={usernames}
-                limit={isMobileResolution ? 7 : isTabletResolution ? 5 : 9}
-              />
-            ),
+        ...(authors.length && {
+          [`components.metabar.${authors.length > 1 ? 'authors' : 'author'}`]: (
+            <WithAvatarGroup
+              authors={authors}
+              limit={isMobileResolution ? 7 : isTabletResolution ? 5 : 9}
+            />
+          ),
         }),
         'components.metabar.contribute': (
           <>
