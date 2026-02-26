@@ -15,9 +15,9 @@ const SignatureRoot: FC<PropsWithChildren<SignatureRootProps>> = ({
 
   return (
     <section className={styles.container} aria-labelledby={titleId}>
-      <h3 className={styles.title} id={titleId}>
+      <div className={styles.title} id={titleId}>
         {title}
-      </h3>
+      </div>
       <div className={styles.root}>{children}</div>
     </section>
   );
