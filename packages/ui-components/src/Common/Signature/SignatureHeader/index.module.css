@@ -13,11 +13,16 @@
     items-center
     gap-1
     text-sm
-    font-semibold
-    break-all;
+    font-semibold;
+
+  .longName {
+    @apply break-all
+      sm:break-keep;
+  }
 
   &.return {
-    @apply font-open-sans;
+    @apply font-open-sans
+      shrink-0;
 
     svg {
       @apply size-4;
