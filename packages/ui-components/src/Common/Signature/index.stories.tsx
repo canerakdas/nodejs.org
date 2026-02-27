@@ -24,8 +24,8 @@ export const Default: Story = {
           type={<a href="#">&lt;Object&gt;</a>}
           description="An optional attribute."
         >
-          <Signature name="option1" type={<a href="#">&lt;Type3&gt;</a>} />
-          <Signature name="option2" type={<a href="#">&lt;Type3&gt;</a>} />
+          <Signature name="option1" type={<a href="#">&lt;Type1&gt;</a>} />
+          <Signature name="option2" type={<a href="#">&lt;Type2&gt;</a>} />
           <Signature
             name="option3"
             type={<a href="#">&lt;Type3&gt;</a>}
