@@ -36,7 +36,7 @@ const FunctionSignature: FC<FunctionSignatureProps> = ({ title, items }) => {
     );
   }
 
-  return <>{items.map((param, i) => renderSignature(param, i))}</>;
+  return items.map((param, i) => renderSignature(param, i));
 };
 
 export default FunctionSignature;
