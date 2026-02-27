@@ -1,16 +1,16 @@
-import FunctionDefinition from '#ui/Common/Signature';
+import Signature from '#ui/Common/Signature';
 
 import type { Meta as MetaObj, StoryObj } from '@storybook/react-webpack5';
 
-type Story = StoryObj<typeof FunctionDefinition>;
-type Meta = MetaObj<typeof FunctionDefinition>;
+type Story = StoryObj<typeof Signature>;
+type Meta = MetaObj<typeof Signature>;
 
 export const Default: Story = {
   args: {
     title: 'Attributes',
     children: (
       <>
-        <FunctionDefinition
+        <Signature
           name="attribute1"
           type={
             <>
@@ -18,27 +18,21 @@ export const Default: Story = {
             </>
           }
         />
-        <FunctionDefinition
+        <Signature
           name="attribute2"
           optional
           type={<a href="#">&lt;Object&gt;</a>}
           description="An optional attribute."
         >
-          <FunctionDefinition
-            name="option1"
-            type={<a href="#">&lt;Type3&gt;</a>}
-          />
-          <FunctionDefinition
-            name="option2"
-            type={<a href="#">&lt;Type3&gt;</a>}
-          />
-          <FunctionDefinition
+          <Signature name="option1" type={<a href="#">&lt;Type3&gt;</a>} />
+          <Signature name="option2" type={<a href="#">&lt;Type3&gt;</a>} />
+          <Signature
             name="option3"
             type={<a href="#">&lt;Type3&gt;</a>}
             description="One of the available options."
           />
-        </FunctionDefinition>
-        <FunctionDefinition
+        </Signature>
+        <Signature
           name="Returns"
           type={<a href="#">&lt;Type4&gt;</a>}
           description="Returns the result of the function."
@@ -54,7 +48,7 @@ export const WithLongAttributeNames: Story = {
     title: 'Attributes',
     children: (
       <>
-        <FunctionDefinition
+        <Signature
           name="thisIsAnAttributeWithAnExcessivelyLongNameToTestTextWrapping"
           type={
             <>
@@ -72,7 +66,7 @@ export const WithLongTypeAndAttributeNames: Story = {
     title: 'Attributes',
     children: (
       <>
-        <FunctionDefinition
+        <Signature
           name="attribute1"
           type={
             <>
@@ -91,7 +85,7 @@ export const OptionalAttribute: Story = {
   args: {
     title: 'Attributes',
     children: (
-      <FunctionDefinition
+      <Signature
         name="optionalAttribute"
         optional
         type={<a href="#">&lt;Object&gt;</a>}
@@ -102,5 +96,5 @@ export const OptionalAttribute: Story = {
 };
 
 export default {
-  component: FunctionDefinition,
+  component: Signature,
 } as Meta;
