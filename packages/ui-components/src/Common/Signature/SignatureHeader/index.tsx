@@ -26,14 +26,13 @@ const SignatureHeader: FC<SignatureHeaderProps> = ({
       >
         {isReturn && <ArrowTurnDownLeftIcon />}
         <span
-          className={classNames(styles.name, {
+          className={classNames({
             [styles.longName]: name.length > 16,
           })}
         >
           {name}:
           {optional && (
             <span
-              className={styles.optional}
               role="img"
               aria-label="Optional"
               data-tooltip="Optional"
