@@ -52,7 +52,7 @@ export const WithLongAttributeNames: Story = {
           name="thisIsAnAttributeWithAnExcessivelyLongNameToTestTextWrapping"
           type={
             <>
-              <a href="#">&lt;Type1&gt;</a>|<a href="#">&lt;Type2&gt;</a>
+              <a href="#">&lt;Type1&gt;</a>|<a href="#">&lt;Type3&gt;</a>
             </>
           }
         />
